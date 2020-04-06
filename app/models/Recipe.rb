@@ -12,7 +12,7 @@ class Recipe
     end
 
     def self.most_popular
-        self.all.max_by { |recipe| recipe.users.length }
+        self.all.max_by { |recipe| recipe.recipe_cards.length }
     end
 
     def recipe_cards
