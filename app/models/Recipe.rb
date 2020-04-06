@@ -20,18 +20,18 @@ class Recipe
     end
 
     def users
-        recipe_cards = RecipeCard.all.select { |rc| rc.recipe == self }
-        recipe_cards.map { |rc| rc.user }
+        RecipeCard.all.select { |rc| rc.recipe == self }
+        .map { |rc| rc.user }
     end
 
     def ingredients
-        recipe_ingredients = RecipeIngredient.all.select { |ri| ri.recipe == self }
-        recipe_ingredients.map { |ri| ri.ingredient }
+        RecipeIngredient.all.select { |ri| ri.recipe == self }
+        .map { |ri| ri.ingredient }
     end
 
     def allergens
-        allergy_ingredients = Allergy.all.map { |allergy| allergy.ingredient }
-        self.ingredients & allergy_ingredients
+        Allergy.all.map { |allergy| allergy.ingredient }
+        .& self.ingredients
     end
 
     def add_ingredients(ingredients)
