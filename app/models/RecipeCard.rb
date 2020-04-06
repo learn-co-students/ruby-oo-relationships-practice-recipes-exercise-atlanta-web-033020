@@ -1,5 +1,5 @@
 class RecipeCard
-    attr_accessor :user, :recipe, :date, :rating
+    attr_reader :user, :recipe, :date, :rating
     @@all = []
 
     def initialize(user, recipe, date=Time.now.to_s, rating=0)
