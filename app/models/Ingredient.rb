@@ -12,10 +12,11 @@ class Ingredient
     end
 
     def self.most_common_allergen
-        self.all.max { |ingredient1, ingredient2| Ingredient.num_users(ingredient1) <=> Ingredient.num_users(ingredient2) }
+        self.all.max_by { |ingredient| ingredient.users.count }
     end
 
-    def self.num_users(ingredient)
-        Allergy.all.select { |allergy| allergy.ingredient == ingredient }.length
+    def users
+        Allergy.all.select { |allergy| allergy.ingredient == self }
+        .map { |allergy| allergy.user }.uniq
     end
 end

@@ -46,5 +46,7 @@ allergy1 = Allergy.new(wendy, steak)
 allergy2 = Allergy.new(brandon, tomato)
 allergy3 = Allergy.new(robert, onion)
 allergy4 = Allergy.new(robert, steak)
+allergy5 = Allergy.new(brandon, onion)
+allergy6 = Allergy.new(wendy, onion)
 
 binding.pry
