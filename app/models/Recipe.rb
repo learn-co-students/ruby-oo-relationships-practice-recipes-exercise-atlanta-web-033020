@@ -12,7 +12,7 @@ class Recipe
     end
 
     def self.most_popular
-        self.all.max_by { |recipe| recipe.recipe_cards.length }
+        self.all.max_by { |recipe| recipe.users.length }
     end
 
     def recipe_cards
@@ -21,7 +21,7 @@ class Recipe
 
     def users
         RecipeCard.all.select { |rc| rc.recipe == self }
-        .map { |rc| rc.user }
+        .map { |rc| rc.user }.uniq
     end
 
     def ingredients
