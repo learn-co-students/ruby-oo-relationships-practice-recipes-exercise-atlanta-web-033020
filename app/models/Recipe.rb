@@ -12,7 +12,7 @@ class Recipe
     end
 
     def self.most_popular
-        self.all.max { |recipe1, recipe2| recipe1.recipe_cards.length <=> recipe2.recipe_cards.length }
+        self.all.max_by { |recipe| recipe.users.length }
     end
 
     def recipe_cards
@@ -30,8 +30,12 @@ class Recipe
     end
 
     def allergens
-        Allergy.all.map { |allergy| allergy.ingredient }
-        .& self.ingredients
+        # Allergy.all.map { |allergy| allergy.ingredient }
+        # .& self.ingredients
+        self.all.select do |ingredient|
+            Allergy.all.map { |allergy| allergy.ingredient }
+            .include?(ingredient)
+        end
     end
 
     def add_ingredients(ingredients)
